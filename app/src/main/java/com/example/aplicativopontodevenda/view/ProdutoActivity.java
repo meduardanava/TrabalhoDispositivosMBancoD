@@ -73,6 +73,7 @@ public class ProdutoActivity extends AppCompatActivity {
             }
         });
 
+        atualizarListaProduto();
         dialog = builder.create();
         dialog.show();
     }

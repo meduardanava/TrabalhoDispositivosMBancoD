@@ -95,7 +95,7 @@ public class ClienteActivity extends AppCompatActivity {
                 });
             }
         });*/
-
+        atualizarListaCliente();
         dialog = builder.create();
         dialog.show();
     }

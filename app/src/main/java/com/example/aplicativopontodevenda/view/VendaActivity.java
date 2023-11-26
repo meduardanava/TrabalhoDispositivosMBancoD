@@ -1,8 +1,11 @@
 package com.example.aplicativopontodevenda.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -10,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.aplicativopontodevenda.R;
+import com.example.aplicativopontodevenda.adapter.VendaAtualListAdapter;
 import com.example.aplicativopontodevenda.dao.ClienteDao;
 import com.example.aplicativopontodevenda.dao.ProdutoDao;
 import com.example.aplicativopontodevenda.dao.VendaDao;
@@ -28,6 +32,10 @@ public class VendaActivity extends AppCompatActivity {
     private Button btAdicionarProduto;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Produto> listaProdutos;
+    private ArrayList<Produto> listaVendaAtual;
+    private ArrayList<Integer> qtdProdutos;
+    private RecyclerView rvProdutos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +47,18 @@ public class VendaActivity extends AppCompatActivity {
         autoAdicionarProduto = findViewById(R.id.autoAdicionarProduto);
         edQtdProduto = findViewById(R.id.edQtdProduto);
         btAdicionarProduto = findViewById(R.id.btAdicionarProduto);
+        rvProdutos = findViewById(R.id.rvProdutos);
 
         numVendaAutomatico();
         carregarClientes();
         carregaProdutos();
+
+        btAdicionarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                atualizarProdutosVenda();
+            }
+        });
     }
 
     private void carregarClientes() {
@@ -62,11 +78,25 @@ public class VendaActivity extends AppCompatActivity {
         String[] vetProdutos = new String[listaProdutos.size()];
         for (int i = 0; i < listaProdutos.size(); i++) {
             Produto produto = listaProdutos.get(i);
-            vetProdutos[i] = produto.getNomeProduto() + " - R$ " + produto.getValorProduto();
+            vetProdutos[i] = produto.getNomeProduto();
         }
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, vetProdutos);
 
         autoAdicionarProduto.setAdapter(adapter);
+    }
+
+    private void atualizarProdutosVenda() {
+        VendaAtualListAdapter adapter = new VendaAtualListAdapter(listaVendaAtual, this);
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            if (autoAdicionarProduto.getText().toString().equals(listaProdutos.get(i).getNomeProduto())) {
+                listaVendaAtual.add(listaProdutos.get(i));
+                qtdProdutos.add(Integer.parseInt(edQtdProduto.getText().toString()));
+                adapter.setValores(qtdProdutos.get(i), listaProdutos.get(i).getValorProduto()*qtdProdutos.get(i));
+                break;
+            }
+        }
+        rvProdutos.setLayoutManager(new LinearLayoutManager(this));
+        rvProdutos.setAdapter(adapter);
     }
 
     private void numVendaAutomatico(){
@@ -75,5 +105,4 @@ public class VendaActivity extends AppCompatActivity {
 
         tvNumeroVenda.setText(numPedido);
     }
-
 }
