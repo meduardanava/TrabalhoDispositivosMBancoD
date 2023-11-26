@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ public class ClienteActivity extends AppCompatActivity {
     private View viewAlert;
     private RecyclerView rvClientes;
 
-    @SuppressLint("MissingInflatedId")
+    //@SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,14 +73,23 @@ public class ClienteActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Salvar", null);
+
+        dialog = builder.create();
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                salvarDados();
+            public void onShow(DialogInterface dialogInterface) {
+                Button bt = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        salvarDados();
+                    }
+                });
             }
         });
 
-        dialog = builder.create();
         dialog.show();
     }
 
@@ -91,15 +101,19 @@ public class ClienteActivity extends AppCompatActivity {
         if (retorno != null) {
             if (retorno.contains("CODIGO")) {
                 edCodigo.setError(retorno);
+                edCodigo.requestFocus();
             }
             if (retorno.contains("RAZÃO SOCIAL")) {
                 edRazaoSocial.setError(retorno);
+                edRazaoSocial.requestFocus();
             }
             if (retorno.contains("CNPJ")) {
                 edCnpj.setError(retorno);
+                edCnpj.requestFocus();
             }
             if (retorno.contains("ENDEREÇO")) {
                 edEndereco.setError(retorno);
+                edEndereco.requestFocus();
             }
         }else {
             Toast.makeText(this, "Cliente salvo com sucesso!",

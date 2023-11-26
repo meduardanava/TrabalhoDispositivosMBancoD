@@ -13,7 +13,7 @@ import com.example.aplicativopontodevenda.model.Cliente;
 
 import java.util.ArrayList;
 
-public class ClienteDao implements GenericDao<Cliente> {
+public class ClienteDao implements GerenricDao<Cliente> {
 
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase baseDados;
@@ -61,7 +61,7 @@ public class ClienteDao implements GenericDao<Cliente> {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getRazaoSocial());
 
-            String[]identificador = {String.valueOf(obj.getCodigo())};
+            String[]identificador = {String.valueOf(obj.getCnpj())};
 
             return baseDados.update(tabela, valores, colunas[0]+
                     "= ?", identificador);
@@ -76,7 +76,7 @@ public class ClienteDao implements GenericDao<Cliente> {
     public long delete(Cliente obj) {
 
         try {
-            String[]identificador = {String.valueOf(obj.getCodigo())};
+            String[]identificador = {String.valueOf(obj.getCnpj())};
 
             return baseDados.delete(tabela, colunas[0] +
                     "= ?", identificador);
@@ -137,7 +137,7 @@ public class ClienteDao implements GenericDao<Cliente> {
             }
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.getById() "+ex.getMessage());
+            Log.e("UNIPAR", "ERRO: ClienteDao.getById() "+ex.getMessage());
         }
 
         return null;
