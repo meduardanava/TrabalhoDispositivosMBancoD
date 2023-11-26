@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="CÓDIGO" />
+            android:text="COD"/>
 
         <TextView
             android:layout_width="0dp"
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="CNPJ" />
+            android:text="CNPJ"/>
 
         <TextView
             android:layout_width="0dp"
@@ -62,6 +62,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@android:color/holo_green_dark"/>
-
 
 </RelativeLayout>

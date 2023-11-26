@@ -13,7 +13,7 @@ import com.example.aplicativopontodevenda.model.Cliente;
 
 import java.util.ArrayList;
 
-public class ClienteDao implements GerenricDao<Cliente> {
+public class ClienteDao implements GenericDao<Cliente> {
 
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase baseDados;
