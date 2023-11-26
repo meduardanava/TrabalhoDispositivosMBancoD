@@ -118,17 +118,3 @@ public class ClienteActivity extends AppCompatActivity {
         rvClientes.setAdapter(adapter);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

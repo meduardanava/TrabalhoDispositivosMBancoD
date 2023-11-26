@@ -13,10 +13,7 @@
         android:theme="@style/Theme.AplicativoPontoDeVenda"
         tools:targetApi="31">
         <activity
-            android:name=".view.AlunoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Aluno"
+            android:name=".view.ClienteActivity"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"

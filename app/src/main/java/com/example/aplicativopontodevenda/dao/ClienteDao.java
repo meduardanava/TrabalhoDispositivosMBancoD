@@ -17,13 +17,12 @@ public class ClienteDao implements GerenricDao<Cliente> {
 
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase baseDados;
-    private String[]colunas = {"CODIGO", "RAZÃO SOCIAL", "CNPJ", "ENDEREÇO"};
+    private String[]colunas = {"CODIGO", "RAZAOSOCIAL", "CNPJ", "ENDERECO"};
     private String tabela = "CLIENTE";
     private Context context;
     private static ClienteDao instancia;
 
     public static ClienteDao getInstancia(Context context) {
-
         if (instancia == null) {
             return instancia = new ClienteDao(context);
         }else {
@@ -33,16 +32,13 @@ public class ClienteDao implements GerenricDao<Cliente> {
 
     public ClienteDao(Context context) {
         this.context = context;
-
         openHelper = new SQLiteDataHelper(this.context,
                 "NAVA", null, 1);
-
         baseDados = openHelper.getWritableDatabase();
     }
 
     @Override
     public long insert(Cliente obj) {
-
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[0], obj.getCodigo());

@@ -6,15 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro Cliente"
-        android:id="@+id/btCadastroCliente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="abrirCadastroCliente"/>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btCadastroCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastro Cliente"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="abrirCadastroCliente"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

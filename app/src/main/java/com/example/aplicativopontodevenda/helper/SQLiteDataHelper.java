@@ -16,7 +16,7 @@ public class SQLiteDataHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL("CREATE TABLE CLIENTE (CODIGO INTEGER, RAZAOSOCIAL VARCHAR(100), CNPJ VARCHAR(14), ENDERECO VARCHAR(150))");
     }
 
     @Override

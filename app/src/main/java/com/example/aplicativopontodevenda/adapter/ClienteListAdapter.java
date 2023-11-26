@@ -48,7 +48,6 @@ public class ClienteListAdapter extends
 
     @Override
     public int getItemCount() {
-
         return this.listaClientes.size();
     }
 
