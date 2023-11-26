@@ -2,7 +2,7 @@ package com.example.aplicativopontodevenda.dao;
 
 import java.util.ArrayList;
 
-public interface GerenricDao<Object> {
+public interface GenericDao<Object> {
 
     long insert(Object obj);
     long update(Object obj);

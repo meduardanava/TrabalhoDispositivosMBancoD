@@ -8,6 +8,9 @@ public class Cliente {
     private String endereco;
 
     public Cliente() {
+    }
+
+    public Cliente(int codigo, String razaoSocial, String cnpj, String endereco) {
         this.codigo = codigo;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;

@@ -28,22 +28,18 @@ public class ClienteListAdapter extends
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View listItem = inflater.inflate(R.layout.item_list_cliente,
-                parent, false);
-
+        View listItem = inflater.inflate(R.layout.item_list_cliente, parent, false);
         return new ViewHolder(listItem);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ClienteListAdapter.ViewHolder holder, int position) {
-
         Cliente clienteSelecionado = listaClientes.get(position);
         holder.tvCodigo.setText(String.valueOf(clienteSelecionado.getCodigo()));
-        holder.tvRazaoSocial.setText(String.valueOf(clienteSelecionado.getRazaoSocial()));
-        holder.tvCnpj.setText(String.valueOf(clienteSelecionado.getCnpj()));
-        holder.tvEndereco.setText(String.valueOf(clienteSelecionado.getEndereco()));
+        holder.tvRazaoSocial.setText(clienteSelecionado.getRazaoSocial());
+        holder.tvCnpj.setText(clienteSelecionado.getCnpj());
+        holder.tvEndereco.setText(clienteSelecionado.getEndereco());
     }
 
     @Override

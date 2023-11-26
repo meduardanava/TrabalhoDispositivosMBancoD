@@ -10,56 +10,54 @@ import android.util.Log;
 
 import com.example.aplicativopontodevenda.helper.SQLiteDataHelper;
 import com.example.aplicativopontodevenda.model.Cliente;
+import com.example.aplicativopontodevenda.model.Produto;
 
 import java.util.ArrayList;
 
-public class ClienteDao implements GenericDao<Cliente> {
+public class ProdutoDao implements GenericDao<Produto> {
 
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase baseDados;
-    private String[]colunas = {"CODIGO", "RAZAOSOCIAL", "CNPJ", "ENDERECO"};
-    private String tabela = "CLIENTE";
+    private String[]colunas = {"CODIGO", "NOME", "VALORPRODUTO"};
+    private String tabela = "PRODUTO";
     private Context context;
-    private static ClienteDao instancia;
+    private static ProdutoDao instancia;
 
-    public static ClienteDao getInstancia(Context context) {
+    public static ProdutoDao getInstancia(Context context) {
         if (instancia == null) {
-            return instancia = new ClienteDao(context);
+            return instancia = new ProdutoDao(context);
         }else {
             return instancia;
         }
     }
 
-    public ClienteDao(Context context) {
+    public ProdutoDao(Context context) {
         this.context = context;
-        openHelper = new SQLiteDataHelper(this.context,
-                "NAVA", null, 1);
+        openHelper = new SQLiteDataHelper(this.context, "NAVA", null, 1);
         baseDados = openHelper.getWritableDatabase();
     }
 
     @Override
-    public long insert(Cliente obj) {
+    public long insert(Produto obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[0], obj.getCodigo());
-            valores.put(colunas[1], obj.getRazaoSocial());
-            valores.put(colunas[2], obj.getCnpj());
-            valores.put(colunas[3], obj.getEndereco());
+            valores.put(colunas[1], obj.getNomeProduto());
+            valores.put(colunas[2], obj.getValorProduto());
 
             return baseDados.insert(tabela,null, valores);
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.insert() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ProdutoDao.insert() "+ex.getMessage());
         }
         return 0;
     }
 
     @Override
-    public long update(Cliente obj) {
-
+    public long update(Produto obj) {
         try {
             ContentValues valores = new ContentValues();
-            valores.put(colunas[1], obj.getRazaoSocial());
+            valores.put(colunas[1], obj.getNomeProduto());
 
             String[]identificador = {String.valueOf(obj.getCodigo())};
 
@@ -67,14 +65,13 @@ public class ClienteDao implements GenericDao<Cliente> {
                     "= ?", identificador);
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.update() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ProdutoDao.update() "+ex.getMessage());
         }
         return 0;
     }
 
     @Override
-    public long delete(Cliente obj) {
-
+    public long delete(Produto obj) {
         try {
             String[]identificador = {String.valueOf(obj.getCodigo())};
 
@@ -82,15 +79,14 @@ public class ClienteDao implements GenericDao<Cliente> {
                     "= ?", identificador);
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.delete() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ProdutoDao.delete() "+ex.getMessage());
         }
         return 0;
     }
 
     @Override
-    public ArrayList<Cliente> getAll() {
-
-        ArrayList<Cliente> lista = new ArrayList<>();
+    public ArrayList<Produto> getAll() {
+        ArrayList<Produto> lista = new ArrayList<>();
 
         try {
             Cursor cursor = baseDados.query(tabela, colunas,
@@ -99,26 +95,24 @@ public class ClienteDao implements GenericDao<Cliente> {
 
             if (cursor.moveToFirst()) {
                 do {
-                    Cliente cliente = new Cliente();
-                    cliente.setCodigo(cursor.getInt(0));
-                    cliente.setRazaoSocial(cursor.getString(1));
-                    cliente.setCnpj(cursor.getString(2));
-                    cliente.setEndereco(cursor.getString(3));
+                    Produto produto = new Produto();
+                    produto.setCodigo(cursor.getInt(0));
+                    produto.setNomeProduto(cursor.getString(1));
+                    produto.setValorProduto(cursor.getDouble(2));
 
-                    lista.add(cliente);
+                    lista.add(produto);
 
                 }while (cursor.moveToNext());
             }
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.getAll() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ProdutoDao.getAll() "+ex.getMessage());
         }
-
         return lista;
     }
 
     @Override
-    public Cliente getById(int id) {
+    public Produto getById(int id) {
 
         try {
             String[]identificador = {String.valueOf(id)};
@@ -127,19 +121,17 @@ public class ClienteDao implements GenericDao<Cliente> {
                     null, null, null);
 
             if (cursor.moveToFirst()) {
-                Cliente cliente = new Cliente();
-                cliente.setCodigo(cursor.getInt(0));
-                cliente.setRazaoSocial(cursor.getString(1));
-                cliente.setCnpj(cursor.getString(2));
-                cliente.setEndereco(cursor.getString(3));
+                Produto produto = new Produto();
+                produto.setCodigo(cursor.getInt(0));
+                produto.setNomeProduto(cursor.getString(1));
+                produto.setValorProduto(cursor.getDouble(2));
 
-                return  cliente;
+                return  produto;
             }
 
         }catch (SQLException ex){
-            Log.e("NAVA", "ERRO: ClienteDao.getById() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ProdutoDao.getById() "+ex.getMessage());
         }
-
         return null;
     }
 }
