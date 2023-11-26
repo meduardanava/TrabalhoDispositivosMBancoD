@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.aplicativopontodevenda.helper.SQLiteDataHelper;
-import com.example.aplicativopontodevenda.model.Cliente;
 import com.example.aplicativopontodevenda.model.Produto;
 
 import java.util.ArrayList;

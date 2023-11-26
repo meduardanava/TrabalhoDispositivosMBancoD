@@ -21,7 +21,7 @@ public class ClienteController {
             if (codigo.equals("") || codigo.isEmpty()) {
                 return  "Informe o CÓDIGO do Cliente!";
             }
-            if (razaoSocial.equals("") || codigo.isEmpty()) {
+            if (razaoSocial.equals("") || razaoSocial.isEmpty()) {
                 return "Informe a RAZÃO SOCIAL do Cliente!";
             }
             if (cnpj.equals("") || cnpj.isEmpty()) {
