@@ -12,11 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.aplicativopontodevenda.R;
-import com.example.aplicativopontodevenda.adapter.ClienteListAdapter;
 import com.example.aplicativopontodevenda.adapter.ProdutoListAdapter;
-import com.example.aplicativopontodevenda.controller.ClienteController;
 import com.example.aplicativopontodevenda.controller.ProdutoController;
-import com.example.aplicativopontodevenda.model.Cliente;
 import com.example.aplicativopontodevenda.model.Produto;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -52,7 +49,6 @@ public class ProdutoActivity extends AppCompatActivity {
     }
 
     private void abrirCadastro(){
-
         viewAlert = getLayoutInflater().inflate(R.layout.dialog_cadastro_produto, null);
         edCodigo = viewAlert.findViewById(R.id.edCodigo);
         edNomeProduto = viewAlert.findViewById(R.id.edNomeProduto);
@@ -99,19 +95,15 @@ public class ProdutoActivity extends AppCompatActivity {
                 edValorProduto.requestFocus();
             }
         }else {
-            Toast.makeText(this, "Produto salvo com sucesso!",
-                    Toast.LENGTH_LONG).show();
-
+            Toast.makeText(this, "Produto salvo com sucesso!", Toast.LENGTH_LONG).show();
             dialog.dismiss();
         }
     }
 
     private void atualizarListaProduto() {
-
         ArrayList<Produto> listaProduto = controller.retornarTodosProdutos();
         ProdutoListAdapter adapter = new ProdutoListAdapter(listaProduto, this);
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setAdapter(adapter);
     }
-
 }

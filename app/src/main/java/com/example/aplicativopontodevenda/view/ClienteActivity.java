@@ -48,7 +48,6 @@ public class ClienteActivity extends AppCompatActivity {
                 abrirCadastro();
             }
         });
-
         atualizarListaCliente();
     }
 
@@ -131,13 +130,10 @@ public class ClienteActivity extends AppCompatActivity {
         }
     }
 
-
     private void atualizarListaCliente() {
-
         ArrayList<Cliente> listaClientes = controller.retornarTodosClientes();
         ClienteListAdapter adapter = new ClienteListAdapter(listaClientes, this);
         rvClientes.setLayoutManager(new LinearLayoutManager(this));
         rvClientes.setAdapter(adapter);
     }
-
 }

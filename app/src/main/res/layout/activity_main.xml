@@ -35,6 +35,18 @@
             app:layout_constraintTop_toTopOf="parent"
             android:onClick="abrirCadastroProduto"/>
 
+        <Button
+            android:id="@+id/btIniciaVenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Venda"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="abrirVenda"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

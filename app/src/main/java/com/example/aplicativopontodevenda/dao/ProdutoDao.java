@@ -87,7 +87,7 @@ public class ProdutoDao implements GenericDao<Produto> {
         try {
             Cursor cursor = baseDados.query(tabela, colunas,
                     null, null, null,
-                    null, colunas[0] + "desc");
+                    null, colunas[0]);
 
             if (cursor.moveToFirst()) {
                 do {

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AplicativoPontoDeVenda"
         tools:targetApi="31">
         <activity
+            android:name=".view.VendaActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ProdutoActivity"
             android:exported="false" />
         <activity
