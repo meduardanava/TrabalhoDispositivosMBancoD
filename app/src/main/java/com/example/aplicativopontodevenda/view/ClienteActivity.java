@@ -54,9 +54,7 @@ public class ClienteActivity extends AppCompatActivity {
 
     private void abrirCadastro(){
 
-        viewAlert = getLayoutInflater().inflate(R.layout.dialog_cadastro_cliente,
-                null);
-
+        viewAlert = getLayoutInflater().inflate(R.layout.dialog_cadastro_cliente, null);
         edCodigo = viewAlert.findViewById(R.id.edCodigo);
         edRazaoSocial = viewAlert.findViewById(R.id.edRazaoSocial);
         edCnpj = viewAlert.findViewById(R.id.edCnpj);
@@ -73,6 +71,15 @@ public class ClienteActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                salvarDados();
+            }
+        });
+
+        /*
         builder.setPositiveButton("Salvar", null);
 
         dialog = builder.create();
@@ -88,8 +95,9 @@ public class ClienteActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        });*/
 
+        dialog = builder.create();
         dialog.show();
     }
 
@@ -120,9 +128,9 @@ public class ClienteActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
             dialog.dismiss();
-            atualizarListaCliente();
         }
     }
+
 
     private void atualizarListaCliente() {
 
@@ -131,4 +139,5 @@ public class ClienteActivity extends AppCompatActivity {
         rvClientes.setLayoutManager(new LinearLayoutManager(this));
         rvClientes.setAdapter(adapter);
     }
+
 }

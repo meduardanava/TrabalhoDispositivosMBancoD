@@ -32,8 +32,7 @@ public class ClienteDao implements GenericDao<Cliente> {
 
     public ClienteDao(Context context) {
         this.context = context;
-        openHelper = new SQLiteDataHelper(this.context,
-                "NAVA", null, 1);
+        openHelper = new SQLiteDataHelper(this.context, "NAVA", null, 1);
         baseDados = openHelper.getWritableDatabase();
     }
 
@@ -63,9 +62,7 @@ public class ClienteDao implements GenericDao<Cliente> {
 
             String[]identificador = {String.valueOf(obj.getCnpj())};
 
-            return baseDados.update(tabela, valores, colunas[0]+
-                    "= ?", identificador);
-
+            return baseDados.update(tabela, valores, colunas[0]+ "= ?", identificador);
         }catch (SQLException ex){
             Log.e("NAVA", "ERRO: ClienteDao.update() "+ex.getMessage());
         }
@@ -78,9 +75,7 @@ public class ClienteDao implements GenericDao<Cliente> {
         try {
             String[]identificador = {String.valueOf(obj.getCnpj())};
 
-            return baseDados.delete(tabela, colunas[0] +
-                    "= ?", identificador);
-
+            return baseDados.delete(tabela, colunas[0] + "= ?", identificador);
         }catch (SQLException ex){
             Log.e("NAVA", "ERRO: ClienteDao.delete() "+ex.getMessage());
         }
@@ -89,13 +84,12 @@ public class ClienteDao implements GenericDao<Cliente> {
 
     @Override
     public ArrayList<Cliente> getAll() {
-
         ArrayList<Cliente> lista = new ArrayList<>();
 
         try {
             Cursor cursor = baseDados.query(tabela, colunas,
                     null, null, null,
-                    null, colunas[0] + "desc");
+                    null, colunas[0]);
 
             if (cursor.moveToFirst()) {
                 do {
@@ -113,7 +107,6 @@ public class ClienteDao implements GenericDao<Cliente> {
         }catch (SQLException ex){
             Log.e("NAVA", "ERRO: ClienteDao.getAll() "+ex.getMessage());
         }
-
         return lista;
     }
 
@@ -137,7 +130,7 @@ public class ClienteDao implements GenericDao<Cliente> {
             }
 
         }catch (SQLException ex){
-            Log.e("UNIPAR", "ERRO: ClienteDao.getById() "+ex.getMessage());
+            Log.e("NAVA", "ERRO: ClienteDao.getById() "+ex.getMessage());
         }
 
         return null;

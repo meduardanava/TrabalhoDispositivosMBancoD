@@ -14,8 +14,7 @@ import com.example.aplicativopontodevenda.model.Cliente;
 
 import java.util.ArrayList;
 
-public class ClienteListAdapter extends
-        RecyclerView.Adapter<ClienteListAdapter.ViewHolder> {
+public class ClienteListAdapter extends RecyclerView.Adapter<ClienteListAdapter.ViewHolder> {
 
     private ArrayList<Cliente> listaClientes;
     private Context context;
@@ -34,12 +33,11 @@ public class ClienteListAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClienteListAdapter.ViewHolder holder, int position) {
-        Cliente clienteSelecionado = listaClientes.get(position);
-        holder.tvCodigo.setText(String.valueOf(clienteSelecionado.getCodigo()));
-        holder.tvRazaoSocial.setText(clienteSelecionado.getRazaoSocial());
-        holder.tvCnpj.setText(clienteSelecionado.getCnpj());
-        holder.tvEndereco.setText(clienteSelecionado.getEndereco());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.tvCodigo.setText(String.valueOf(listaClientes.get(position).getCodigo()));
+        holder.tvRazaoSocial.setText(listaClientes.get(position).getRazaoSocial());
+        holder.tvCnpj.setText(listaClientes.get(position).getCnpj());
+        holder.tvEndereco.setText(listaClientes.get(position).getEndereco());
     }
 
     @Override
@@ -55,9 +53,7 @@ public class ClienteListAdapter extends
         public TextView tvEndereco;
 
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
-
             this.tvCodigo = itemView.findViewById(R.id.tvCodigo);
             this.tvRazaoSocial = itemView.findViewById(R.id.tvRazaoSocial);
             this.tvCnpj = itemView.findViewById(R.id.tvCnpj);

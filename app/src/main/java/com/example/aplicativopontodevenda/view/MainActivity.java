@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.aplicativopontodevenda.R;
 import com.example.aplicativopontodevenda.dao.ClienteDao;
+import com.example.aplicativopontodevenda.dao.ProdutoDao;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,11 +18,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ClienteDao.getInstancia(this);
+        ProdutoDao.getInstancia(this);
     }
 
     public void abrirCadastroCliente(View view) {
-
         Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirCadastroProduto(View view) {
+        Intent intent = new Intent(MainActivity.this, ProdutoActivity.class);
         startActivity(intent);
     }
 }

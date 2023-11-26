@@ -60,8 +60,7 @@ public class ProdutoDao implements GenericDao<Produto> {
 
             String[]identificador = {String.valueOf(obj.getCodigo())};
 
-            return baseDados.update(tabela, valores, colunas[0]+
-                    "= ?", identificador);
+            return baseDados.update(tabela, valores, colunas[0]+ "= ?", identificador);
 
         }catch (SQLException ex){
             Log.e("NAVA", "ERRO: ProdutoDao.update() "+ex.getMessage());
@@ -74,9 +73,7 @@ public class ProdutoDao implements GenericDao<Produto> {
         try {
             String[]identificador = {String.valueOf(obj.getCodigo())};
 
-            return baseDados.delete(tabela, colunas[0] +
-                    "= ?", identificador);
-
+            return baseDados.delete(tabela, colunas[0] + "= ?", identificador);
         }catch (SQLException ex){
             Log.e("NAVA", "ERRO: ProdutoDao.delete() "+ex.getMessage());
         }
